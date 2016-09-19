@@ -8,9 +8,12 @@ To run these examples you will need to have:
 
 - A running instance of Riak TS (https://docs.basho.com/riakts/latest/)
 - Python
-- The Riak Python client (https://github.com/basho/riak-python-client)
+- The Riak Python client (```pip install riak``` - https://github.com/basho/riak-python-client)
 - Jupyter Notebook (http://jupyter.org/)
-- Pandas (http://pandas.pydata.org/). 
+- Pandas (http://pandas.pydata.org/)
+- Matplotlib (```pip install matplotlib```)
+- Spark (http://spark.apache.org/downloads.html)
+- Findspark (```pip install findspark```) 
 
 Please see each respective sight for installation information if you don't already have those packages installed.
 
