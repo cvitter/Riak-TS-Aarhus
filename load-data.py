@@ -1,14 +1,11 @@
+# load-day.py - Python script designed to import data from the demo-data-extract.csv file
+# (distributed with this project) into the 'aarhus' table in your instance of Riak TS
+
 from riak import RiakClient
 from datetime import datetime
 import csv
-import calendar
 
 table_name = "aarhus"
-
-#
-def changetime(stime):
-    dt=datetime.strptime(stime,'%Y-%m-%dT%H:%M:%S')
-    return calendar.timegm(datetime.timetuple(dt))*1000
             
 client = RiakClient()
 
@@ -17,32 +14,37 @@ batchcount = 0
 batchsize = 100
 
 ds = []
-t = client.table(table_name)
+table = client.table(table_name)
 
+# Open the csv data file
 with open('./demo-data-extract.csv', 'rU') as infile:
-    r = csv.reader(infile)
-    for l in r:
-		if l[0] != 'status':
-			newl = [l[0], str(l[3]) ,datetime.strptime(l[5],'%Y-%m-%dT%H:%M:%S'), int(l[1]), int(l[2]), int(l[4]), int(l[6])]
+	#r Load the file into reader 
+    reader = csv.reader(infile)
+    #Iterate over each line in the file
+    for line in reader:
+		if line[0] != 'status':
+			# Create a row for each line
+			new_record = [line[0], str(line[3]), datetime.strptime(line[5],'%Y-%m-%dT%H:%M:%S'), int(line[1]), int(line[2]), int(line[4]), int(line[6])]
+			
+			# Add the new row to our data set (a list of lists)
+			ds.append(new_record)
+			batchcount = batchcount + 1
 			totalcount = totalcount + 1
 
-			ds.append(newl)
-			batchcount = batchcount + 1
-
+			# If the ds size matches the batch size write the batch of rows
+			# to Riak TS (optimal size is roughly 100 rows)
 			if batchcount == batchsize:
-				#add the records to the table
 				print "Count at  ", totalcount
-				to = t.new(ds)
-
-				print "Created ts object"
-				print "Storage result:  ", to.store()
+				to = table.new(ds)
+				to.store()
 				batchcount = 0
 				ds = []
 
 infile.close()
 print "Input file closed"
 
-to = t.new(ds)
+to = table.new(ds)
 if ds:
-	print "Storage result:  ",to.store()
-	print totalcount
+	to.store()
+	
+print totalcount
