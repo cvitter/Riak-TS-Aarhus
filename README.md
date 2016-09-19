@@ -13,6 +13,7 @@ To run these examples you will need to have:
 - Pandas (http://pandas.pydata.org/)
 - Matplotlib (```pip install matplotlib```)
 - Spark (http://spark.apache.org/downloads.html)
+- The Riak Spark Connector (https://github.com/basho/spark-riak-connector)
 - Findspark (```pip install findspark```) 
 
 Please see each respective sight for installation information if you don't already have those packages installed.
@@ -25,3 +26,4 @@ Once you have all of the packages installed and have downloaded (or cloned) the 
 - load-data.py: Python script that imports the demo-data-extract.csv into the 'aarhus' table (```>python load-data.py```)
 - Simple Queries.ipynb: Jupyter notebook with Python code that demonstrates the basics of querying the data in the 'aarhus' table
 - Pandas Examples.ipynb: Jupyter notebook with Python code that demonstrates the basics of using Pandas to analyze data returned from 'aarhus' table
+- Pyspark Examples.ipynb: Jupyter notebook with Python code that demonstrates the basics of using the Riak Spark Connector to connect to and query Riak TS with Spark
