@@ -20,7 +20,7 @@ Please see each respective sight for installation information if you don't alrea
 
 The data used for these examples is traffic data from Aarhus, Denmark and is part of the Open Data Aarhus project (https://www.odaa.dk/). The demo-data-extract.csv file contains 50,000 traffic observations related to average speed and number of vehicles passing specific exits. 
 
-Once you have all of the packages installed and have downloaded (or cloned) the example code and data, navigate at the command line to the project's directory and luanch Jupyter (```>jupyter notebook```). The example code included will:
+Once you have all of the packages installed and have downloaded (or cloned) the example code and data, navigate at the command line to the project's directory and launch Jupyter (```>jupyter notebook```). The example code included will:
 
 - Create Aarhus Table.ipynb: Jupyter notebook with Python code that creates the 'aarhus' table
 - load-data.py: Python script that imports the demo-data-extract.csv into the 'aarhus' table (```>python load-data.py```)
